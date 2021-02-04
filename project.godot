@@ -1,0 +1,30 @@
+; Engine configuration file.
+; It's best edited using the editor UI and not directly,
+; since the parameters that go here are not all obvious.
+;
+; Format:
+;   [section] ; section goes between []
+;   param=value ; assign values to parameters
+
+config_version=4
+
+_global_script_classes=[ {
+"base": "KinematicBody2D",
+"class": "player",
+"language": "GDScript",
+"path": "res://Assets/ai/player.gd"
+} ]
+_global_script_class_icons={
+"player": ""
+}
+
+[application]
+
+config/name="AI"
+config/description="Brought to you by Elias Arno Eskelinen"
+run/main_scene="res://Scenes/main.tscn"
+config/icon="res://icon.png"
+
+[rendering]
+
+environment/default_environment="res://default_env.tres"

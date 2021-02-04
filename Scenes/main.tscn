@@ -1,0 +1,109 @@
+[gd_scene load_steps=7 format=2]
+
+[ext_resource path="res://Assets/goal/Goal.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Scenes/main.gd" type="Script" id=2]
+[ext_resource path="res://Scenes/UI.gd" type="Script" id=4]
+
+[sub_resource type="CircleShape2D" id=3]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 50 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 50, 300 )
+
+[node name="Controller" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="Points" type="Node2D" parent="."]
+
+[node name="Startpos" type="Node2D" parent="Points"]
+position = Vector2( 130.14, 125.106 )
+
+[node name="Goal" parent="Points" instance=ExtResource( 1 )]
+position = Vector2( 854.668, 324.9 )
+
+[node name="BestPos" type="CollisionShape2D" parent="Points"]
+shape = SubResource( 3 )
+
+[node name="Diezone" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Diezone"]
+position = Vector2( 511.516, -49.7143 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D2" type="CollisionShape2D" parent="Diezone"]
+position = Vector2( 511.516, 645.249 )
+shape = SubResource( 1 )
+
+[node name="CollisionShape2D3" type="CollisionShape2D" parent="Diezone"]
+position = Vector2( -50.7736, 297.767 )
+shape = SubResource( 2 )
+
+[node name="CollisionShape2D4" type="CollisionShape2D" parent="Diezone"]
+position = Vector2( 1072.59, 297.767 )
+shape = SubResource( 2 )
+
+[node name="Players" type="Node2D" parent="."]
+
+[node name="UI" type="Node2D" parent="."]
+script = ExtResource( 4 )
+
+[node name="VBoxContainer" type="VBoxContainer" parent="UI"]
+margin_right = 1024.0
+margin_bottom = 600.0
+rect_min_size = Vector2( 1024, 600 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="StatsContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+margin_right = 1024.0
+margin_bottom = 23.0
+rect_min_size = Vector2( 1020, 23 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Left" type="Label" parent="UI/VBoxContainer/StatsContainer"]
+margin_top = 4.0
+margin_right = 21.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "0/0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="UI/VBoxContainer/StatsContainer"]
+margin_left = 25.0
+margin_top = 4.0
+margin_right = 1024.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "FPS"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="LogContainer" type="HBoxContainer" parent="UI/VBoxContainer"]
+margin_top = 27.0
+margin_right = 330.0
+margin_bottom = 327.0
+rect_min_size = Vector2( 330, 300 )
+size_flags_horizontal = 0
+
+[node name="CentralLog" type="VBoxContainer" parent="UI/VBoxContainer/LogContainer"]
+margin_right = 330.0
+margin_bottom = 300.0
+rect_min_size = Vector2( 300, 300 )
+rect_clip_content = true
+size_flags_horizontal = 3
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 0.4
+autostart = true
+[connection signal="body_entered" from="Diezone" to="." method="_on_Diezone_body_entered"]
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]

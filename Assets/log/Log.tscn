@@ -1,0 +1,27 @@
+[gd_scene load_steps=2 format=2]
+
+[ext_resource path="res://Assets/log/Log.gd" type="Script" id=1]
+
+[node name="Log" type="HBoxContainer"]
+margin_right = 300.0
+margin_bottom = 14.0
+script = ExtResource( 1 )
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="Label" type="Label" parent="."]
+margin_right = 51.0
+margin_bottom = 14.0
+text = "ID 1001"
+
+[node name="Label2" type="Label" parent="."]
+margin_left = 55.0
+margin_right = 300.0
+margin_bottom = 14.0
+size_flags_horizontal = 3
+text = "Score 1010"
+align = 2
+
+[node name="Death" type="Timer" parent="."]
+[connection signal="timeout" from="Death" to="." method="_on_Death_timeout"]

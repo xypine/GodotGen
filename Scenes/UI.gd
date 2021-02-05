@@ -19,3 +19,6 @@ func addLog(text1, text2):
 	logp.create()
 	logContainer.add_child(logp)
 	logp.setTimer(2)
+func clearLog():
+	for i in logContainer.get_children():
+		logContainer.remove_child(i)

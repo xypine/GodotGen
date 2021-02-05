@@ -18,10 +18,10 @@ script = ExtResource( 2 )
 [node name="Points" type="Node2D" parent="."]
 
 [node name="Startpos" type="Node2D" parent="Points"]
-position = Vector2( 130.14, 125.106 )
+position = Vector2( 945.611, 562.235 )
 
 [node name="Goal" parent="Points" instance=ExtResource( 1 )]
-position = Vector2( 854.668, 324.9 )
+position = Vector2( 932.052, 65.8009 )
 
 [node name="BestPos" type="CollisionShape2D" parent="Points"]
 shape = SubResource( 3 )
@@ -43,6 +43,16 @@ shape = SubResource( 2 )
 [node name="CollisionShape2D4" type="CollisionShape2D" parent="Diezone"]
 position = Vector2( 1072.59, 297.767 )
 shape = SubResource( 2 )
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="Diezone"]
+polygon = PoolVector2Array( -1310.17, -882.576, 2468.28, -994.391, 3092.58, 1782.37, -1249.6, 1558.74, -1300.85, -747.465, -504.16, -747.465, -308.482, 1116.13, 1923.17, 1297.83, 1881.24, -598.377, -373.708, -290.884, -438.934, -822.009, -1305.51, -826.668 )
+
+[node name="CollisionPolygon2D2" type="CollisionPolygon2D" parent="Diezone"]
+polygon = PoolVector2Array( 499.086, -18.7064, 473.601, 90.989, 648.671, 100.961, 666.399, -15.3823 )
+
+[node name="CollisionPolygon2D3" type="CollisionPolygon2D" parent="Diezone"]
+position = Vector2( 159.557, 4 )
+polygon = PoolVector2Array( 274.155, 622.845, 304.072, 166.767, 472.493, 174.524, 503.518, 621.061 )
 
 [node name="Players" type="Node2D" parent="."]
 
@@ -75,15 +85,36 @@ __meta__ = {
 "_edit_use_anchors_": false
 }
 
-[node name="FPS" type="Label" parent="UI/VBoxContainer/StatsContainer"]
+[node name="Gen" type="Label" parent="UI/VBoxContainer/StatsContainer"]
 margin_left = 25.0
+margin_top = 4.0
+margin_right = 108.0
+margin_bottom = 18.0
+custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
+text = "Generation 0"
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS2" type="Label" parent="UI/VBoxContainer/StatsContainer"]
+margin_left = 112.0
+margin_top = 4.0
+margin_right = 998.0
+margin_bottom = 18.0
+size_flags_horizontal = 3
+text = "Ready commands: [\"Space\", \"P\"]"
+align = 2
+__meta__ = {
+"_edit_use_anchors_": false
+}
+
+[node name="FPS" type="Label" parent="UI/VBoxContainer/StatsContainer"]
+margin_left = 1002.0
 margin_top = 4.0
 margin_right = 1024.0
 margin_bottom = 18.0
-size_flags_horizontal = 3
 custom_colors/font_color_shadow = Color( 0, 0, 0, 1 )
 text = "FPS"
-align = 2
 __meta__ = {
 "_edit_use_anchors_": false
 }
@@ -104,6 +135,6 @@ size_flags_horizontal = 3
 
 [node name="SpawnTimer" type="Timer" parent="."]
 wait_time = 0.4
-autostart = true
+[connection signal="area_entered" from="Diezone" to="." method="_on_Diezone_area_entered"]
 [connection signal="body_entered" from="Diezone" to="." method="_on_Diezone_body_entered"]
 [connection signal="timeout" from="SpawnTimer" to="." method="_on_SpawnTimer_timeout"]
